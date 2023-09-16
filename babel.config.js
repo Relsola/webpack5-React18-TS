@@ -1,3 +1,4 @@
+// 将babel配置抽离出来
 const plugins = [
     // 按需加载模块
     '@babel/plugin-syntax-dynamic-import',
@@ -19,6 +20,8 @@ module.exports = {
     comments: true,
 
     plugins: process.env.NODE_ENV === 'production'
-        ? [...plugins, 'transform-remove-console', 'transform-remove-debugger']
+        // 打包移除console和debugger
+        ? [...plugins, 'transform-remove-console', 'transform-remove-debugger'] 
+        // 开启react组件热更新
         : [...plugins, require.resolve('react-refresh/babel')]
 }
